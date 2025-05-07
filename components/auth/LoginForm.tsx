@@ -3,11 +3,14 @@
 import React from "react";
 
 import { Button } from "@/components/ui/button";
+import { useResisterModal } from "@/hooks/useResisterModal";
 
 export const LoginForm = () => {
+    const { onOpen } = useResisterModal();
+
     return (
         <Button
-            onClick={() => {}}
+            onClick={() => onOpen()}
             variant="link"
             className="font-normal w-full"
         >
