@@ -28,17 +28,17 @@ import { Button } from "../ui/button";
 import { FormError } from "../auth/FormError";
 import { toast } from "sonner";
 
-import { useResisterModal } from "@/hooks/useResisterModal";
-import { ResisterSchema } from "@/schemas";
+import { useRegisterModal } from "@/hooks/useRegisterModal";
+import { RegisterSchema } from "@/schemas";
 import { registerUser } from "@/actions/registerUser";
 
-export const ResisterModal = () => {
-    const { isOpen, onClose } = useResisterModal();
+export const RegisterModal = () => {
+    const { isOpen, onClose } = useRegisterModal();
     const [error, setError] = useState("");
     const [isPending, startTransition] = useTransition();
 
-    const form = useForm<z.infer<typeof ResisterSchema>>({
-        resolver: zodResolver(ResisterSchema),
+    const form = useForm<z.infer<typeof RegisterSchema>>({
+        resolver: zodResolver(RegisterSchema),
         defaultValues: {
             name: "",
             email: "",
@@ -47,7 +47,7 @@ export const ResisterModal = () => {
         },
     });
 
-    const onSubmit = async (values: z.infer<typeof ResisterSchema>) => {
+    const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
         console.log({ values });
         // TODO: 登録機能の実装
 
@@ -77,10 +77,14 @@ export const ResisterModal = () => {
 
     return (
         <Dialog open={isOpen} onOpenChange={handleClose}>
-            <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>ユーザ登録</DialogTitle>
-                    <DialogDescription>ユーザー登録しよう！</DialogDescription>
+            <DialogContent className="text-zinc-900 pb-8">
+                <DialogHeader className="pt-8 px-6">
+                    <DialogTitle className="text-2xl text-center font-bold">
+                        ユーザ登録
+                    </DialogTitle>
+                    <DialogDescription className="text-center text-zinc-500">
+                        ユーザー登録しよう！
+                    </DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
                     <form
@@ -156,7 +160,7 @@ export const ResisterModal = () => {
                                 </FormItem>
                             )}
                         />
-                        <div>
+                        <div className="space-y-4 w-full">
                             <FormError message={error} />
                             <Button
                                 type="submit"

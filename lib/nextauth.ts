@@ -23,6 +23,8 @@ export const authOptions = {
                 }
 
                 const { email, password } = validatedField.data;
+                console.log("email", email);
+                console.log("password", password);
 
                 const user = await getUserByEmail(email);
                 if (!user) return null;
@@ -31,6 +33,7 @@ export const authOptions = {
                     password,
                     user.password
                 );
+                console.log("passwordMatch", passwordMatch);
                 if (passwordMatch) return user;
 
                 return null;

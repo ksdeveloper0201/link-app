@@ -6,7 +6,7 @@ type ModalProps = {
     onClose: () => void;
 };
 
-export const useResisterModal = create<ModalProps>((set) => ({
+export const useRegisterModal = create<ModalProps>((set) => ({
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
     onClose: () => set({ isOpen: false }),

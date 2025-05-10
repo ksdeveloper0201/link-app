@@ -4,11 +4,11 @@ import * as z from "zod";
 import bcrypt from "bcryptjs";
 
 import { db } from "@/lib/prisma";
-import { ResisterSchema } from "@/schemas";
+import { RegisterSchema } from "@/schemas";
 import { getUserByEmail } from "@/store/user";
 
-export const registerUser = async (values: z.infer<typeof ResisterSchema>) => {
-    const validatedField = ResisterSchema.safeParse(values);
+export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
+    const validatedField = RegisterSchema.safeParse(values);
 
     if (!validatedField.success) {
         return { error: "不正な値です" };

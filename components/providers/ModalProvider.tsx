@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-import { ResisterModal } from "@/components/modals/ResisterModal";
+import { RegisterModal } from "@/components/modals/RegisterModal";
 
 export const ModalProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -13,5 +13,5 @@ export const ModalProvider = () => {
 
     if (!isMounted) return null;
 
-    return <ResisterModal />;
+    return <RegisterModal />;
 };

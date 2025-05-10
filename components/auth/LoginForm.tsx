@@ -3,7 +3,7 @@
 import React, { useState, useTransition } from "react";
 
 import { Button } from "@/components/ui/button";
-import { useResisterModal } from "@/hooks/useResisterModal";
+import { useRegisterModal } from "@/hooks/useRegisterModal";
 import { useSearchParams } from "next/navigation";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ import { FormError } from "./FormError";
 export const LoginForm = () => {
     const [error, setError] = useState("");
     const [isPending, startTransition] = useTransition();
-    const { onOpen } = useResisterModal();
+    const { onOpen } = useRegisterModal();
 
     const searchParams = useSearchParams();
     const urlError =
@@ -65,11 +65,11 @@ export const LoginForm = () => {
     };
 
     return (
-        <Card>
-            <CardHeader>
-                <h1>ログイン</h1>
+        <Card className="w-[400px] shadow-sm space-y-6 py-0 mt-16 relative">
+            <CardHeader className="flex flex-col items-center bg-emerald-400/80 rounded-t-xl h-16 justify-center">
+                <h1 className="text-2xl font-bold text-white">ログイン</h1>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-4">
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
@@ -111,9 +111,13 @@ export const LoginForm = () => {
                                 </FormItem>
                             )}
                         />
-                        <div>
+                        <div className="pt-8 space-y-4 w-full">
                             <FormError message={error || urlError} />
-                            <Button>
+                            <Button
+                                type="submit"
+                                className="w-full space-x-2"
+                                disabled={isPending}
+                            >
                                 {isPending && (
                                     <Loader2 className="animate-spin" />
                                 )}
@@ -122,7 +126,11 @@ export const LoginForm = () => {
                         </div>
                     </form>
                 </Form>
-                <Button onClick={() => onOpen()} variant="link">
+                <Button
+                    onClick={() => onOpen()}
+                    variant="link"
+                    className="font-normal w-full pt-12 md:pt-0"
+                >
                     新規登録
                 </Button>
             </CardContent>
