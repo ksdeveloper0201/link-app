@@ -57,6 +57,7 @@ export const authOptions = {
 
 export const auth = async () => {
     const session = await getServerSession(authOptions);
+    console.log(session);
 
     return session?.user;
 };
