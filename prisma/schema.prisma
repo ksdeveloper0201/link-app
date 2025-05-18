@@ -20,6 +20,38 @@ model User {
   image String
   password String
 
+  threadsInitialized Thread[] @relation("User1Thread")
+  threadsReceived Thread[] @relation("User2Thread")
+  messages Message[]
+
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Thread {
+  id String @id @default(cuid())
+  user1Id String
+  user2Id String
+  user1 User @relation("User1Thread", fields: [user1Id], references: [id])
+  user2 User @relation("User2Thread", fields: [user2Id], references: [id])
+  messages Message[]
+
+  @@unique([user1Id, user2Id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  id String @id @default(cuid())
+  content String @db.Text
+
+  threadId String
+  thread Thread @relation(fields: [threadId], references: [id])
+  authorId String
+  author User @relation(fields: [authorId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
