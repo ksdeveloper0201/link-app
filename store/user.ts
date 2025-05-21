@@ -13,7 +13,7 @@ export const getSafeUserById = async (id: string): Promise<SafeUser | null> => {
         where: { id },
     });
     if (!user) return null;
-    return createSafeUser(user);
+    return convertSafeUser(user);
 };
 
 export const getSafeUsersByName = async (
@@ -28,11 +28,11 @@ export const getSafeUsersByName = async (
             id: { not: ignoreId },
         },
     });
-    const safeUsers = users.map((user) => createSafeUser(user));
+    const safeUsers = users.map((user) => convertSafeUser(user));
     return safeUsers;
 };
 
-export const createSafeUser = (user: User): SafeUser => {
+export const convertSafeUser = (user: User): SafeUser => {
     const { password, ...safeUser } = user;
     return safeUser;
 };

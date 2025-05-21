@@ -76,7 +76,7 @@ export const Sidebar = () => {
                                 )}
                             >
                                 <UserAvatar image={user.image} />
-                                <Link href={`/thread/${user.id}}]`}>
+                                <Link href={`/thread/${user.id}`}>
                                     {user.name}
                                 </Link>
                             </div>
