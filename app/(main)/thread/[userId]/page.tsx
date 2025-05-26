@@ -1,9 +1,10 @@
-import { MessageHeader } from "@/components/message/MessageHeader";
+import { MessageHeader } from "@/components/messages/MessageHeader";
 import { auth } from "@/lib/nextauth";
 import { LOGIN_REQUIRE_REDIRECT, LOGIN_SUCCESS_REDIRECT } from "@/routes";
 import { getOrCreateThread } from "@/store/thread";
 import { getSafeUserById } from "@/store/user";
 import { redirect } from "next/navigation";
+import { MessageList } from "@/components/messages/MessageList";
 
 type MessagePageProps = {
     params: { userId: string };
@@ -29,6 +30,7 @@ const MessagePage = async ({ params }: MessagePageProps) => {
     return (
         <div className="flex flex-col h-full">
             <MessageHeader otherUser={otherUser} />
+            <MessageList threadId={thread.id} currentUserId={currentUser.id} />
             <div className="grow">メッセージ一覧</div>
             <div className="flex items-center justify-center bg-blue-100 py-2">
                 メッセージ入力コンポーネント（予定）

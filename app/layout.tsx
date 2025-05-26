@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/components/providers/ModalProvider";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/components/providers/AuthProvider";
+import { QueryProvider } from "@/components/providers/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +24,13 @@ export default function RootLayout({
     return (
         <html lang="ja">
             <body className={cn(inter.className, "bg-gray-100/30")}>
-                <AuthProvider>
-                    <Toaster />
-                    <ModalProvider />
-                    {children}
-                </AuthProvider>
+                <QueryProvider>
+                    <AuthProvider>
+                        <Toaster />
+                        <ModalProvider />
+                        {children}
+                    </AuthProvider>
+                </QueryProvider>
             </body>
         </html>
     );
